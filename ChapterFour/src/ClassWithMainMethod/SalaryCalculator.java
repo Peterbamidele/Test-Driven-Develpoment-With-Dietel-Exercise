@@ -1,5 +1,6 @@
 package ClassWithMainMethod;
 
+import java.util.IllegalFormatCodePointException;
 import java.util.Scanner;
 
 /***
@@ -12,31 +13,42 @@ import java.util.Scanner;
 
 public class SalaryCalculator {
     public static void main(String[] args) {
-        double GrossPay;
-        double hours;
-        double hourlyRate;
-        int Employee = 1;
-
         Scanner input = new Scanner(System.in);
+        double hourlyRate;
+        int hourworked;
+        double PermanentPay = 0;
+        double grossPay = 0;
+        String employee;
+        int counter = 1;
 
-        while ( Employee <= 3){
-            System.out.print("Enter Hourly Rate");
+        while (counter < 4) {
+            System.out.print("Enter Employee Name:");
+            employee = input.nextLine();
+
+            System.out.print("Enter HourWorked:");
+            hourworked = input.nextInt();
+
+            System.out.print("Enter HourlyWorked:");
             hourlyRate = input.nextDouble();
 
-            System.out.print("Enter Hours Worked");
-            hours = input.nextDouble();
-
-            if (hours > 40)
-                GrossPay = (40.0 * hourlyRate) + (hours - 40) * (hourlyRate * 1.5);
-                else
-                    GrossPay = hours * hourlyRate;
-            System.out.printf("Pay for Employee %d is #%.2f\n", Employee, GrossPay);
-
-            Employee++;
-
+            if (hourworked <= 40) {
+                grossPay = hourlyRate * hourworked;
+                System.out.printf("Gross Pay of %s is :%.2f %n", employee, grossPay);
+            }
+            else if  (hourworked > 40) {
+                int Overtime = hourworked - 40;
+                double OverTimePay = Overtime * (hourlyRate / 2);
+                PermanentPay = hourlyRate * 40;
+                grossPay = PermanentPay + OverTimePay;
+                System.out.printf("Gross Pay of %s is: %.2f %n", employee, grossPay);
+            }
+            counter++;
+            System.out.println();
 
         }
 
-
+        }
     }
-}
+
+
+
