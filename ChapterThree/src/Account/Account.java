@@ -30,7 +30,7 @@ public class Account {
         this.SurName = Surname;
     }
 
-    public String getSurName() {
+    public String getSurName()  {
         return SurName;
     }
 
